@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#004b35">
+  <meta name="description" content="Brasil Copa 2026 — análise visual da campanha da Seleção Brasileira.">
+  <title>Brasil Copa 2026 | Performance da Seleção</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+  <header class="hero" id="topo">
+    <picture class="hero__players">
+      <source media="(max-width: 760px)" srcset="./assets/jogadores-brasil-hero.png">
+      <img src="./assets/jogadores-brasil-hero-horizontal.png" alt="Ilustração editorial de jogadores brasileiros fictícios celebrando" width="1672" height="941" fetchpriority="high">
+    </picture>
+    <div class="hero__shapes" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <p class="eyebrow eyebrow--light">Copa do Mundo <strong>2026</strong></p>
+        <div class="hero__title-row">
+          <h1>Brasil</h1>
+          <span class="team-code">BRA</span>
+        </div>
+        <p class="hero__lead">Performance da Seleção Brasileira</p>
+        <p class="hero__description">A campanha traduzida em criação, controle, intensidade e eficiência.</p>
+        <div class="hero__meta">
+          <span class="live-dot">Dados da campanha</span>
+          <span>Atualizado em <strong id="data-atualizacao">—</strong></span>
+        </div>
+      </div>
+      <div class="hero__brand" aria-label="Identidade visual da Copa do Mundo 2026">
+        <div class="hero__number" aria-hidden="true">26</div>
+        <picture><img src="./assets/identidade-copa-2026.webp" alt="Marca da Copa do Mundo 2026 com a taça" width="1200" height="1200"></picture>
+        <span class="hero__country">BRASIL • BRA</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Seções do dashboard">
+    <div class="section-nav__inner">
+      <a href="#visao-geral" class="active">Visão geral</a>
+      <a href="#ataque">Ataque</a>
+      <a href="#distribuicao">Distribuição</a>
+      <a href="#movimentacao">Movimentação</a>
+      <a href="#defesa">Defesa</a>
+      <a href="#goleiro">Goleiro</a>
+      <a href="#fisico">Físico</a>
+      <a href="#disciplina">Disciplina</a>
+    </div>
+  </nav>
+
+  <main id="conteudo">
+    <section class="controls wrap" aria-labelledby="filtros-titulo">
+      <div class="controls__heading">
+        <div><span class="eyebrow">Recorte dos dados</span><h2 id="filtros-titulo">Painel da campanha</h2></div>
+        <button class="filters-toggle" type="button" aria-expanded="false" aria-controls="filters-body">Ajustar filtros <span>+</span></button>
+      </div>
+      <div class="controls__body" id="filters-body">
+        <label>Seleção<select disabled><option>Brasil</option></select></label>
+        <label>Competição<select disabled><option>Copa do Mundo 2026</option></select></label>
+        <label>Escopo<select disabled><option>Campanha completa</option></select></label>
+        <fieldset class="category-filter"><legend>Categoria</legend><div id="category-options"></div></fieldset>
+        <fieldset class="view-filter"><legend>Visualização</legend><div class="segmented"><button type="button" class="active" data-view="total">Totais</button><button type="button" data-view="per-game">Por jogo</button></div></fieldset>
+      </div>
+    </section>
+
+    <div id="estado-carregamento" class="loading wrap" role="status"><span></span>Carregando os dados da campanha…</div>
+    <div id="dashboard" hidden>
+      <section id="visao-geral" class="section section--overview wrap" data-category="todas">
+        <header class="section-heading"><div><span class="eyebrow">Visão geral</span><h2>A campanha em um olhar</h2></div><p>Resultados, produção ofensiva e consistência defensiva até aqui.</p></header>
+        <div id="hero-kpis" class="hero-kpis"></div>
+        <div class="overview-grid">
+          <article class="panel campaign-panel"><div class="panel__heading"><div><span class="eyebrow">Campanha</span><h3>O caminho do Brasil</h3></div><span id="campanha-registro" class="record"></span></div><div id="campaign-summary"></div></article>
+          <article class="panel insights-panel"><div class="panel__heading"><div><span class="eyebrow">Leitura rápida</span><h3>O que os dados contam</h3></div></div><ol id="insights-list"></ol></article>
+        </div>
+      </section>
+
+      <section id="ataque" class="section section--attack" data-category="ataque">
+        <div class="wrap"><header class="section-heading section-heading--light"><div><span class="eyebrow">Com a bola</span><h2>Criação e eficiência</h2></div><p>Do volume de finalizações à capacidade de transformar chances em gols.</p></header>
+          <div id="attack-highlights" class="feature-metrics"></div>
+          <div class="attack-grid"><article class="panel panel--dark"><div class="panel__heading"><div><span class="eyebrow">Funil ofensivo</span><h3>Da tentativa ao gol</h3></div></div><div id="shot-funnel"></div></article><article class="panel"><div class="panel__heading"><div><span class="eyebrow">Eficiência</span><h3>Gols × xG <button class="info" data-tooltip="xG estima a qualidade das chances e quantos gols seriam esperados a partir delas." aria-label="O que é xG?">i</button></h3></div></div><div id="xg-comparison"></div></article><article class="panel"><div class="panel__heading"><div><span class="eyebrow">Origem das tentativas</span><h3>Onde o Brasil finaliza</h3></div></div><div id="shot-zones"></div></article></div>
+          <div id="attack-details" class="metric-strip"></div>
+        </div>
+      </section>
+
+      <section id="distribuicao" class="section wrap" data-category="distribuicao"><header class="section-heading"><div><span class="eyebrow">Controle e distribuição</span><h2>A bola circula com precisão</h2></div><p>Volume, segurança e capacidade de romper as linhas adversárias.</p></header><div class="distribution-grid"><article class="pass-hero" id="pass-hero"></article><article class="panel" id="pass-quality"></article></div><div id="distribution-details" class="metric-grid"></div></section>
+
+      <section id="movimentacao" class="section section--movement" data-category="movimentacao"><div class="wrap"><header class="section-heading"><div><span class="eyebrow">Movimentação</span><h2>Como o Brasil ocupa espaços</h2></div><p>Ofertas de passe e recepções que revelam a dinâmica coletiva.</p></header><div class="movement-layout"><article class="movement-map" id="movement-map"></article><article class="panel" id="movement-receptions"></article></div></div></section>
+
+      <section id="defesa" class="section section--defense" data-category="defesa"><div class="wrap"><header class="section-heading section-heading--light"><div><span class="eyebrow">Sem a bola</span><h2>Pressão e recuperação</h2></div><p>A intensidade para recuperar a posse e proteger a própria meta.</p></header><div id="defense-content" class="defense-layout"></div></div></section>
+
+      <section id="goleiro" class="section wrap" data-category="defesa"><header class="section-heading"><div><span class="eyebrow">Proteção da meta</span><h2>Goleiro e ações defensivas</h2></div><p>Defesas do goleiro e o raio de atuação defensiva da equipe.</p></header><div id="goalkeeper-content" class="goalkeeper-grid"></div></section>
+
+      <section id="fisico" class="section section--physical" data-category="fisico"><div class="wrap"><header class="section-heading"><div><span class="eyebrow">Intensidade</span><h2>O motor da Seleção</h2></div><p>Distância, explosão e volume de corridas ao longo da campanha.</p></header><div id="physical-content" class="physical-layout"></div></div></section>
+
+      <section id="disciplina" class="section wrap" data-category="todas"><header class="section-heading"><div><span class="eyebrow">Disciplina</span><h2>Controle competitivo</h2></div><p>Faltas, cartões e interrupções em um bloco direto.</p></header><div id="discipline-content" class="discipline-grid"></div></section>
+    </div>
+
+    <section id="estado-erro" class="error-state wrap" hidden role="alert"><strong>Não foi possível carregar o painel.</strong><p>Abra o projeto com o Live Server para permitir a leitura do arquivo JSON.</p><button type="button" id="retry-button">Tentar novamente</button></section>
+  </main>
+
+  <footer>
+    <div class="wrap footer__content">
+      <div class="footer__identity">
+        <div class="footer__visual" aria-label="Identidade da Copa do Mundo 2026">
+          <img class="footer__logo" src="./assets/identidade-copa-2026.webp" alt="Marca da Copa do Mundo 2026" width="1200" height="1200" loading="lazy">
+        </div>
+        <div class="footer__brand">
+          <strong>BRASIL COPA 2026</strong>
+          <span>Sports Data Experience</span>
+        </div>
+      </div>
+      <div class="footer__author">
+        <p><span>Por</span> Bruno Firme</p>
+        <small>Analista de Dados <i>•</i> Engenheiro de Dados</small>
+      </div>
+      <div class="footer__links" aria-label="Links profissionais de Bruno Firme">
+        <a href="https://www.linkedin.com/in/brunofirme-/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Bruno Firme, abre em uma nova aba">LinkedIn ↗</a>
+        <a href="https://github.com/brunofirme10" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Bruno Firme, abre em uma nova aba">GitHub ↗</a>
+      </div>
+      <div class="footer__source">
+        <span>Fonte dos dados</span>
+        <a href="https://www.fifa.com/" target="_blank" rel="noopener noreferrer" aria-label="Fonte dos dados: FIFA.com, abre em uma nova aba"><i aria-hidden="true"></i> fifa.com ↗</a>
+      </div>
+      <a class="footer__top" href="#topo">Voltar ao topo ↑</a>
+    </div>
+    <div class="wrap footer__bottom">
+      <p>Dados processados pela camada Ouro • Interface em HTML, CSS e JavaScript</p>
+    </div>
+  </footer>
+  <script src="./js/app.js"></script>
+</body>
+</html>
